@@ -101,6 +101,7 @@ def web_to_track_refs(web_tracks, *, check_playable=True):
 
 def to_playlist(
     web_playlist,
+    *,
     username=None,
     bitrate=None,
     as_ref=False,
@@ -156,7 +157,7 @@ SEARCH_FIELD_MAP = {
 }
 
 
-def sp_search_query(query, exact=False):
+def sp_search_query(query, *, exact=False):
     """Translate a Mopidy search query to a Spotify search query"""
 
     result = []

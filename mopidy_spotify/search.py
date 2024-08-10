@@ -27,7 +27,7 @@ def search(
     if "uri" in query:
         return _search_by_uri(config, web_client, query)
 
-    sp_query = translator.sp_search_query(query, exact)
+    sp_query = translator.sp_search_query(query, exact=exact)
     if not sp_query:
         logger.debug("Ignored search with empty query")
         return models.SearchResult(uri="spotify:search")
@@ -108,7 +108,7 @@ def search(
 def _search_by_uri(config, web_client, query):
     tracks = []
     for uri in query["uri"]:
-        tracks += lookup.lookup(config, web_client, uri)
+        tracks += lookup.lookup(config, web_client, uri).values()
 
     uri = "spotify:search"
     if len(query["uri"]) == 1:
