@@ -19,7 +19,13 @@ class SpotifyBackend(pykka.ThreadingActor, backend.Backend):
             self.playlists = playlists.SpotifyPlaylistsProvider(backend=self)
         else:
             self.playlists = None
-        self.uri_schemes = ["spotify"]
+        self.uri_schemes = [
+            "spotify",
+            "http://open.spotify.com/",
+            "https://open.spotify.com/",
+            "http://play.spotify.com/",
+            "https://play.spotify.com/",
+        ]
 
     def on_start(self):
         self._web_client = web.SpotifyOAuthClient(
